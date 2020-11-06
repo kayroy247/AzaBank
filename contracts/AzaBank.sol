@@ -15,7 +15,7 @@ contract AzaBank is Owner {
     mapping(address => Depositor) private depositors;
     
     modifier withdrawReady(uint depositDate) {
-        require((block.timestamp - depositDate) >= 2 weeks, "Not yet time for withdrawal");
+        require((block.timestamp.sub(depositDate)) >= 2 weeks, "Not yet time for withdrawal");
         _;
     }
 
@@ -31,7 +31,7 @@ contract AzaBank is Owner {
     }
     
     function withdraw() external withdrawReady(depositors[msg.sender].date) {
-        msg.sender.transfer((depositors[msg.sender].balance * 12) / 10);
+        msg.sender.transfer((depositors[msg.sender].balance.mul(12).div(10)));
     }
     
 
