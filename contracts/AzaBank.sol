@@ -1,10 +1,11 @@
 pragma solidity >=0.4.22 <0.8.0;
 
 import "./Owner.sol";
+import "./safemath.sol";
 
 contract AzaBank is Owner {
     
-    
+    using SafeMath for uint256;
     
      struct Depositor {
         uint balance;
